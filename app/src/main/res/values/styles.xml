@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Chat"></style>
+
+    <style name="AppTheme.Chat.Text">
+
+    </style>
+
+    <style name="MyMessage" parent="AppTheme.Chat.Text">
+
+    </style>
+
 </resources>
