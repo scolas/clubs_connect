@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect.model;
+package com.example.android.clubsconnect.model;
 
 /**
  * Created by ProfessorTaha on 3/3/2018.

@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect.model;
+package com.example.android.clubsconnect.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

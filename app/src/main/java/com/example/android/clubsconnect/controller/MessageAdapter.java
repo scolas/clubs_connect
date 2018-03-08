@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect.controller;
+package com.example.android.clubsconnect.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.android.clubs_connect.model.Message;
-import com.example.android.clubs_connect.view.MessageViewHolder;
+import com.example.android.clubsconnect.model.Message;
+import com.example.android.clubsconnect.view.MessageViewHolder;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater li = System.
-        return new MessageViewHolder();
+       // LayoutInflater li = System.
+       // return new MessageViewHolder();
+        return null;
     }
 
     @Override
@@ -37,6 +38,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     @Override
     public int getItemCount() {
-        return return mMessages.size();
+        return mMessages.size();
     }
 }
