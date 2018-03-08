@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect;
+package com.example.android.clubsconnect;
 
 import org.junit.Test;
 
