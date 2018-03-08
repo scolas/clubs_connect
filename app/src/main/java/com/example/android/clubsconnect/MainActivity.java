@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect;
+package com.example.android.clubsconnect;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
