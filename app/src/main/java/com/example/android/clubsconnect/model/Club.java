@@ -17,6 +17,7 @@ class Club {
     private Author mAdmin;
 
     // GETTERS
+    //Test
 
     public void setClubTitle(String clubTitle) { this.mClubTitle = clubTitle; }
 
