@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/clubsconnect.iml" filepath="$PROJECT_DIR$/clubsconnect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clubs_connect.iml" filepath="$PROJECT_DIR$/clubs_connect.iml" />
+      <module fileurl="file://Z:\aaron\AndroidStudioProjects\clubs_connect\clubsconnect.iml" filepath="Z:\aaron\AndroidStudioProjects\clubs_connect\clubsconnect.iml" />
     </modules>
   </component>
 </project>
