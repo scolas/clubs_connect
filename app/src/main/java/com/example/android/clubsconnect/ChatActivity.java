@@ -1,4 +1,4 @@
-package com.example.android.clubs_connect;
+package com.example.android.clubsconnect;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.clubs_connect.controller.MessageAdapter;
+import com.example.android.clubsconnect.controller.MessageAdapter;
 
 /**
  * Created by ProfessorTaha on 3/3/2018.
@@ -34,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatMessageRecyclerView = findViewById(R.id.recyclerView);
         mSendButton = findViewById(R.id.sendButton);
         mMessageEditText = findViewById(R.id.chatEditText);
-        mMessageAdapter = new MessageAdapter();
+        mMessageAdapter = new MessageAdapter(this);
 
 //        if(savedInstanceState != null && savedInstanceState.containsKey(MESSAGES)){
 //            mMessages = (ArrayList<Message>) savedInstanceState.getSerializable(MESSAGES);
