@@ -1,5 +1,10 @@
 package com.example.android.clubsconnect.model;
 
+import android.location.Location;
+import android.media.Image;
+
+import java.util.ArrayList;
+
 /**
  * <i><b>Club</b></i>
  * <p>
@@ -14,7 +19,16 @@ class Club {
     private String mClubTitle;
     private String mCollege;
     private int mId;
-    private Author mAdmin;
+    private ArrayList<Admin> mAdmin;
+    private ArrayList<Users> mUsers;
+    private Author mAuthor;
+    private String mCity;
+    private String mState;
+    private Location mClubLocation;
+    private Image mClubImage;
+    private String mClubDetails;
+    private Event mNextEvent;
+    private String mMembersCount;
 
     // GETTERS
     //Test
