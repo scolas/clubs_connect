@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  */
 
-class Club {
+public class Club {
     // MEMBER VARIABLES
 
     private String mClubTitle;

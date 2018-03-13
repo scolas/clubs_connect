@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,7 +16,7 @@ import com.example.android.clubsconnect.controller.MessageAdapter;
  * Created by ProfessorTaha on 3/3/2018.
  */
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
     //public static final String MESSAGES = "messages";
 
     //ArrayList<Message> mMessages;
@@ -46,9 +47,16 @@ public class ChatActivity extends AppCompatActivity {
         mChatMessageRecyclerView.setLayoutManager(lm);
         mChatMessageRecyclerView.setAdapter(mMessageAdapter);
 
+        mSendButton.setOnClickListener(this);
     }
 
-//    @Override
+    @Override
+    public void onClick(View v) {
+        String message = mMessageEditText.getText().toString(); //TODO: internationlization.
+        mMessageEditText.setText("");
+
+    }
+    //    @Override
 //    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
 //        outState.putSerializable(MESSAGES, mMessages);
 //    }
