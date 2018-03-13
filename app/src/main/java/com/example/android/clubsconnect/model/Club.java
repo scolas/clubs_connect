@@ -18,7 +18,10 @@ class Club {
 
     // GETTERS
     //Test
+
+    //comment under a comment
 //test1
+
     public void setClubTitle(String clubTitle) { this.mClubTitle = clubTitle; }
 
     public void setCollege(String college) { this.mCollege = college; }
