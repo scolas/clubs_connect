@@ -19,8 +19,8 @@ class Club {
     private String mClubTitle;
     private String mCollege;
     private int mId;
-    private ArrayList<Admin> mAdmin;
-    private ArrayList<Users> mUsers;
+    private ArrayList<ClubAdmin> mAdmins;
+    private ArrayList<Member> mUsers;
     private Author mAuthor;
     private String mCity;
     private String mState;
@@ -39,7 +39,7 @@ class Club {
 
     public void setID(int id) { this.mId = id; }
 
-    public void setAdmin(Author admin) { this.mAdmin = admin; }
+    public void setAdmin(ClubAdmin admin) { mAdmins.add(admin); }
 
     // CONSTRUCTORS
 
@@ -63,7 +63,7 @@ class Club {
 
     public int getID() { return this.mId; }
 
-    public Author getAdmin() {return this.mAdmin; }
+//    public Author getAdmin() {return this.mAdmin; }
 
     /**
      * <b>equals()</b>
@@ -87,8 +87,8 @@ class Club {
 
         return other.getClubTitle().equals(this.mClubTitle) &&
                 other.getCollege().equals(this.mCollege)    &&
-                other.getID() == this.mId                   &&
-                other.getAdmin().equals(this.mAdmin);
+                other.getID() == this.mId                  ;// &&
+//                other.getAdmin().equals(this.mAdmin);
     }
 
     /**
@@ -104,7 +104,7 @@ class Club {
     public String toString() {
         return "Club Title: "   + mClubTitle  +
                 "\nCollege: "   + mCollege    +
-                "\nAdmin: "     + mAdmin      +
+              //  "\nAdmin: "     + mAdmin      +
                 "\nID: "        + mId;
     }
 }

@@ -85,9 +85,10 @@ public class Message implements Serializable {
     public Message() {
         this.mText = "This is a default message created by the default constructor";
         this.mId = -1; //-1 signals was not created in the DB, and is invalid
-
     }
-
+    public  Message(String message){
+        mText = message;
+    }
     public static enum MessageType {
         FROM_ME, FROM_GROUP;
     }
