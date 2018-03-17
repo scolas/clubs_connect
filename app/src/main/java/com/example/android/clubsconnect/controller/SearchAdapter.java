@@ -1,13 +1,13 @@
 package com.example.android.clubsconnect.controller;
 
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.android.clubsconnect.R;
+import com.example.android.clubsconnect.databinding.CustomSearchItemBinding;
 import com.example.android.clubsconnect.model.Club;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder>{
 
     private List<Club> mClubList;
-
+    
     public SearchAdapter(){
 
     }
@@ -27,8 +27,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_search_item,parent,false);
-        return new SearchViewHolder(view);
+        CustomSearchItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.custom_search_item,parent,false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_search_item,parent,false);
+        return new SearchViewHolder(binding);
     }
 
     @Override
@@ -48,18 +49,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     public class SearchViewHolder extends RecyclerView.ViewHolder{
 
-        TextView clubTitle, clubDescription;
+        CustomSearchItemBinding binding;
 
-        public SearchViewHolder(View itemView) {
-            super(itemView);
-
-            clubTitle = itemView.findViewById(R.id.clubName);
-            clubDescription = itemView.findViewById(R.id.clubDescription);
+        public SearchViewHolder(CustomSearchItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         public void bind(int position){
-            clubTitle.setText(mClubList.get(position).getClubTitle());
-            clubDescription.setText(mClubList.get(position).getmClubDetails());
+
+            binding.clubName.setText(mClubList.get(position).getClubTitle());
+            binding.clubDescription.setText(mClubList.get(position).getmClubDetails());
 
         }
     }
