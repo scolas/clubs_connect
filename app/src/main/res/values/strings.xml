@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">clubsconnect</string>
     <string name="send">Send</string>
+    <string name="search_hint">Search for a club</string>
 </resources>

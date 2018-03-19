@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  */
 
-class Club {
+public class Club {
     // MEMBER VARIABLES
 
     private String mClubTitle;
@@ -64,6 +64,13 @@ class Club {
     public int getID() { return this.mId; }
 
     public Author getAdmin() {return this.mAdmin; }
+    public void setmClubDetails(String mClubDetails) {
+        this.mClubDetails = mClubDetails;
+    }
+
+    public String getmClubDetails() {
+        return mClubDetails;
+    }
 
     /**
      * <b>equals()</b>
