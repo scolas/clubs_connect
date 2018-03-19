@@ -18,12 +18,19 @@ class Person {
 
     private String mUserName;
 
+
     Person(){
         //make call to static dbHelper.createPerson? (IDK nomenclature yet) returning String Id from firebase
         //mId = FirebaseHelper.addPerson();
         //OR possibly put static long attribute/property personCount;
         mId = String.valueOf(personCount++);
 
+    }
+
+    //Test constructor taking name
+    public Person(String name){
+        this();
+        this.mUserName = name;
     }
 
     public String getUserName() {
