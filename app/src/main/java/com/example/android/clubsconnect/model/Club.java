@@ -1,3 +1,4 @@
+
 package com.example.android.clubsconnect.model;
 
 import android.location.Location;
@@ -19,8 +20,8 @@ public class Club {
     private String mClubTitle;
     private String mCollege;
     private int mId;
-    private ArrayList<Admin> mAdmin;
-    private ArrayList<Users> mUsers;
+    private ArrayList<ClubAdmin> mAdmins;
+    private ArrayList<Member> mUsers;
     private Author mAuthor;
     private String mCity;
     private String mState;
@@ -39,7 +40,7 @@ public class Club {
 
     public void setID(int id) { this.mId = id; }
 
-    public void setAdmin(Author admin) { this.mAdmin = admin; }
+    public void setAdmin(ClubAdmin admin) { mAdmins.add(admin); }
 
     // CONSTRUCTORS
 
@@ -63,7 +64,8 @@ public class Club {
 
     public int getID() { return this.mId; }
 
-    public Author getAdmin() {return this.mAdmin; }
+   // public Author getAdmin() {return this.mAdmin; }
+
     public void setmClubDetails(String mClubDetails) {
         this.mClubDetails = mClubDetails;
     }
@@ -95,9 +97,18 @@ public class Club {
         return other.getClubTitle().equals(this.mClubTitle) &&
                 other.getCollege().equals(this.mCollege)    &&
                 other.getID() == this.mId                   &&
-                other.getAdmin().equals(this.mAdmin);
+                other.getAdminsToString(mAdmins).equals(this.getAdminsToString(mAdmins));
     }
 
+    //Aaron added this 3/19 to populate toString
+    private String getAdminsToString(ArrayList<ClubAdmin> admins){
+        StringBuilder adminsSB = new StringBuilder();
+        for (ClubAdmin admin : admins){
+            adminsSB.append(admin.getUserName());
+            adminsSB.append("\t- ");
+        }
+        return adminsSB.toString();
+    }
     /**
      * <b>toString()</b>
      * <p>
@@ -111,7 +122,7 @@ public class Club {
     public String toString() {
         return "Club Title: "   + mClubTitle  +
                 "\nCollege: "   + mCollege    +
-                "\nAdmin: "     + mAdmin      +
+                "\nAdmin: "     + getAdminsToString(mAdmins)      +
                 "\nID: "        + mId;
     }
 }
