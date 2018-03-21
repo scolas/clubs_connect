@@ -63,7 +63,14 @@ public class Club {
 
     public int getID() { return this.mId; }
 
-//    public Author getAdmin() {return this.mAdmin; }
+
+    public void setClubDetails(String mClubDetails) {
+        this.mClubDetails = mClubDetails;
+    }
+
+    public String getClubDetails() {
+        return mClubDetails;
+    }
 
     /**
      * <b>equals()</b>

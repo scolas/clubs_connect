@@ -36,7 +36,7 @@ public class ChatServer {
     }
     public Future<List<Message>> getMessagesAsync(@NonNull Club club,@NonNull Timestamp from, @Nullable Timestamp to){
         //get messages from the db
-        //update missing ones from the server. 
+        //update missing ones from the server.
         return null;
     }
 
