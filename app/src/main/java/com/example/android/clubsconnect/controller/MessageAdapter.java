@@ -20,15 +20,15 @@ import java.util.Objects;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     public static final int MESSAGE_FROM_GROUP = 1;
-    public static final int MESSSAG_FROM_ME = 0;
-    private ArrayList<Message> mMessages;
+    public static final int MESSAGE_FROM_ME = 0;
+    private ArrayList<Message> mMessages = new ArrayList<>();
     private Context mContext;
 
     @Override
     public int getItemViewType(int position) {
         switch (mMessages.get(position).getType()){
             case FROM_ME:
-                return MESSSAG_FROM_ME;
+                return MESSAGE_FROM_ME;
             case FROM_GROUP:
                 return MESSAGE_FROM_GROUP;
         }
@@ -37,7 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     public MessageAdapter(@NonNull Context context) {
         Objects.requireNonNull(context);
-        mContext = context;
+        mContext = context.getApplicationContext();
         String [] messages = {
                 "Hi",
                 "Hello",
@@ -45,7 +45,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
                 "Let's build this",
                 "sldkjfal;skdjfl;ak sjdf l;kasjdfl; kjasdl;kfj ;alskdj f;lkjas dl;kfj ;lasd\n askjdfhk 't 'n sadkfjhkjasdhf \n \n \t \t asdjkfhkjh "
         };
-        for(int i =0; i <= messages.length; ++i){
+        for(int i =0; i < messages.length; ++i){
             Message m = new Message(messages[i]);
             if(i%2 ==0 )
                 m.setType(Message.MessageType.FROM_GROUP);
@@ -64,7 +64,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
             case MESSAGE_FROM_GROUP:
                 v = li.inflate(R.layout.chat_message_row_group, parent, false);
                 break;
-            case MESSSAG_FROM_ME:
+            case MESSAGE_FROM_ME:
                 v = li.inflate(R.layout.chat_message_row_self, parent, false);
                 break;
         }

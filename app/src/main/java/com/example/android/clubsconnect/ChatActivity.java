@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ import com.example.android.clubsconnect.controller.MessageAdapter;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
     //public static final String MESSAGES = "messages";
-
+    private static final String TAG = "ChatActivity";
     //ArrayList<Message> mMessages;
     private RecyclerView mChatMessageRecyclerView;
     private Button mSendButton;
@@ -29,8 +30,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.chat);
         mChatMessageRecyclerView = findViewById(R.id.recyclerView);
         mSendButton = findViewById(R.id.sendButton);
@@ -56,8 +58,4 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         mMessageEditText.setText("");
 
     }
-    //    @Override
-//    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-//        outState.putSerializable(MESSAGES, mMessages);
-//    }
 }
