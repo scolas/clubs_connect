@@ -22,32 +22,30 @@ public class AppLoginManager {
 
     private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-    public static void userLogin(final Activity activity, User user){
+    public static void userLogin(final ILoginStatus context, User user){
         mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            ((ILoginStatus)activity).onLoginSuccess(mAuth.getCurrentUser());
+                            context.onLoginSuccess(mAuth.getCurrentUser());
                         } else {
-                            ((ILoginStatus)activity).onLoginFailed(task.getException());
+                            context.onLoginFailed(task.getException());
                         }
                     }
                 });
 
     }
 
-    public static void userRegister(final Activity activity, User user){
+    public static void userRegister(final ILoginStatus context, User user){
         mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
-                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            ((ILoginStatus)activity).onRegisterSuccess(mAuth.getCurrentUser());
+                            context.onRegisterSuccess(mAuth.getCurrentUser());
                         } else {
-                            ((ILoginStatus)activity).onRegisterFailed(task.getException());
-                            Toast.makeText(activity, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            context.onRegisterFailed(task.getException());
                         }
                     }
                 });
