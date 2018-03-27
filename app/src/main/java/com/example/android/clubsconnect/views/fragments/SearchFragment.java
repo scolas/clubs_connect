@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.clubsconnect.R;
-import com.example.android.clubsconnect.controller.SearchAdapter;
+import com.example.android.clubsconnect.adapters.SearchAdapter;
 import com.example.android.clubsconnect.databinding.FragmentSearchBinding;
 import com.example.android.clubsconnect.interfaces.SearchContract;
 import com.example.android.clubsconnect.model.Club;
