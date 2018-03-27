@@ -92,6 +92,16 @@ public class SearchFragment extends Fragment implements SearchContract.SearchVie
     }
 
     @Override
+    public void showSearchMsg() {
+        binding.searchMsgTV.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideSearchMsg() {
+        binding.searchMsgTV.setVisibility(View.GONE);
+    }
+
+    @Override
     public void displaySearchResults(List<Club> clubList) {
 
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);

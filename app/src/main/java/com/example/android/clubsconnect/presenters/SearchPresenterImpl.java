@@ -24,20 +24,23 @@ public class SearchPresenterImpl implements SearchContract.SearchPresenter {
 
         if(searchView !=null){
 
+            searchView.hideSearchMsg();
+            searchView.showProgressbar();
+
             ArrayList<Club> list = new ArrayList();
             for(int i=0;i<searchQuery.length();i++){
                 list.add(getClub(i));
             }
 
-            searchView.displaySearchResults(list);
             searchView.hideProgressbar();
+            searchView.displaySearchResults(list);
         }
     }
 
     private Club getClub(int i){
         Club club  = new Club();
         club.setClubTitle("Club Title Result : "+i);
-        club.setmClubDetails("CLub details value :"+i);
+        club.setmClubDetails("Club details value :"+i);
 
         return club;
     }
