@@ -15,13 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".views.activities.SplashScreenActivity"
-            android:noHistory="true"
-            android:theme="@style/SplashTheme"/>
-
-        <activity android:name=".views.activities.SearchActivity"/>
+        <activity android:name=".views.activities.SearchActivity" />
+        <activity android:name=".LoginActivity" android:theme="@style/NoActionBar"></activity>
     </application>
 
 </manifest>
