@@ -12,14 +12,14 @@ import com.example.android.clubsconnect.model.Message;
  */
 
 public class MessageViewHolder extends RecyclerView.ViewHolder {
-    TextView mTextView;
+    public TextView messageTextView;
 
     public MessageViewHolder(View itemView) {
         super(itemView);
-        mTextView = itemView.findViewById(R.id.messageTextView);
+        messageTextView = itemView.findViewById(R.id.messageTextView);
     }
 
     public void bindMessage(Message message) {
-        mTextView.setText(message.getText());
+        messageTextView.setText(message.getText());
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ClubConnect.iml" filepath="$PROJECT_DIR$/ClubConnect.iml" />
+      <module fileurl="file://C:\AndroidStudioProjects\clubs_connect\ClubConnect.iml" filepath="C:\AndroidStudioProjects\clubs_connect\ClubConnect.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/clubs_connect.iml" filepath="$PROJECT_DIR$/clubs_connect.iml" />
     </modules>

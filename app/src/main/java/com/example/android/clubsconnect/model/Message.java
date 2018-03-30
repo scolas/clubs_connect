@@ -19,8 +19,26 @@ public class Message implements Serializable {
     private String mText;
     private Author mAuthor;
     private Club mClub;
-    private int mId;
+    private String mId;
     private MessageType mType;
+
+    /**
+     * <b>Default Constructor</b>
+     * <p>
+     * This constructor should be used for debugging and testing purposes.
+     * <p>
+     * The text is set to a default message, and the id is set to -1.
+     * </p>
+     * </p>
+     */
+    public Message() {
+        this.mText = "This is a default message created by the default constructor";
+        this.mId = null; //-1 signals was not created in the DB, and is invalid
+    }
+
+    public Message(String message) {
+        mText = message;
+    }
 
     public Timestamp getTimeSent() {
         return mTimeSent;
@@ -54,13 +72,15 @@ public class Message implements Serializable {
         mClub = club;
     }
 
-    public int getId() {
+    public String getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         mId = id;
     }
+
+    // CONSTRUCTORS
 
     public MessageType getType() {
         return mType;
@@ -68,29 +88,6 @@ public class Message implements Serializable {
 
     public void setType(MessageType type) {
         mType = type;
-    }
-
-    // CONSTRUCTORS
-
-    /**
-     * <b>Default Constructor</b>
-     * <p>
-     *     This constructor should be used for debugging and testing purposes.
-     * <p>
-     *     The text is set to a default message, and the id is set to -1.
-     * </p>
-     * </p>
-     *
-     */
-    public Message() {
-        this.mText = "This is a default message created by the default constructor";
-        this.mId = -1; //-1 signals was not created in the DB, and is invalid
-    }
-    public  Message(String message){
-        mText = message;
-    }
-    public static enum MessageType {
-        FROM_ME, FROM_GROUP;
     }
 
     /**
@@ -138,5 +135,9 @@ public class Message implements Serializable {
                 "\nMsg Type: "  + mType     +
                 "\nAuthor: "    + mAuthor   +
                 "\nTimestamp"   + mTimeSent;
+    }
+
+    public static enum MessageType {
+        FROM_ME, FROM_GROUP;
     }
 }
