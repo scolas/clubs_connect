@@ -24,6 +24,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.android.clubsconnect.model.Message.MessageType;
+import static com.example.android.clubsconnect.model.Message.fromMap;
+
 /**
  * Created by ProfessorTaha on 3/3/2018.
  */
@@ -85,7 +88,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         SnapshotParser<Message> parser = new SnapshotParser<Message>() {
             @Override
             public Message parseSnapshot(DataSnapshot dataSnapshot) {
-                Message Message = dataSnapshot.getValue(Message.class);
+                Message Message = fromMap(dataSnapshot.getValue());
                 if (Message != null) {
                     Message.setId(dataSnapshot.getKey());
                 }
@@ -143,7 +146,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         String messageText = mMessageEditText.getText().toString(); //TODO: internationlization.
         mMessageEditText.setText("");
         Message message = new Message(messageText);
-        message.setType(Message.MessageType.FROM_ME);
-        mFirebaseDatabaseReference.child(MESSAGES_CHILD).push().setValue(message);
+        message.setType(MessageType.FROM_ME);
+        DatabaseReference messageReference = mFirebaseDatabaseReference.child(MESSAGES_CHILD).push();
+        messageReference.setValue(message.toMap());
+        message.setId(messageReference.getKey());
     }
 }

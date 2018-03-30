@@ -1,7 +1,12 @@
 package com.example.android.clubsconnect.model;
 
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * <i><b>Message</b></i>
@@ -15,6 +20,10 @@ import java.sql.Timestamp;
 public class Message implements Serializable {
     //MEMBER VARIABLES
 
+    private static final String KEY_TEXT = "message_text";
+    private static final String KEY_AUTHOR_ID = "author_id";
+    private static final String KEY_CLUB_ID = "club_id";
+    private static final String KEY_TIME = "message_time_sent";
     private Timestamp mTimeSent;
     private String mText;
     private Author mAuthor;
@@ -36,6 +45,53 @@ public class Message implements Serializable {
         this.mId = null; //-1 signals was not created in the DB, and is invalid
     }
 
+    /**
+     * Generate a Message from a Map object returned from firebase's DataSnapshot.getValue();
+     */
+    public static Message fromMap(@NonNull Object oMap) {
+        Objects.requireNonNull(oMap);
+        if (!(oMap instanceof Map)) {
+            throw new IllegalArgumentException("Message.fromMap requires a map object");
+        }
+        final Message message = new Message();
+        Map<String, Object> map = (Map<String, Object>) oMap;
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Object oValue = entry.getValue();
+            switch (key) {
+                case KEY_TEXT:
+                    message.setText((String) oValue);
+                    break;
+                case KEY_AUTHOR_ID:
+                    message.setAuthor(Author.findById((String) oValue));
+                    break;
+                case KEY_CLUB_ID:
+                    message.setClub(Club.findById((String) oValue));
+                    break;
+                case KEY_TIME:
+                    message.setTimeSent((Timestamp.valueOf((String) oValue)));
+                    break;
+            }
+        }
+        return message;
+    }
+
+    public Map<String, Object> toMap() {
+        final Map<String, Object> map = new ArrayMap<>(4);
+        if (mAuthor != null) {
+            map.put(KEY_AUTHOR_ID, mAuthor.getId());
+        }
+        if (mClub != null) {
+            map.put(KEY_CLUB_ID, mClub.getId());
+        }
+        if (mText != null) {
+            map.put(KEY_TEXT, mText);
+        }
+        if (mTimeSent != null) {
+            map.put(KEY_TIME, mTimeSent.toString());
+        }
+        return map;
+    }
     public Message(String message) {
         mText = message;
     }
