@@ -16,6 +16,10 @@ public interface SearchContract {
 
         void hideProgressbar();
 
+        void showSearchMsg();
+
+        void hideSearchMsg();
+
         void displaySearchResults(List<Club> clubList);
     }
 

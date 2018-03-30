@@ -1,4 +1,4 @@
-package com.example.android.clubsconnect.controller;
+package com.example.android.clubsconnect.adapters;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;

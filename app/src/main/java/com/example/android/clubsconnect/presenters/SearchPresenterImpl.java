@@ -24,13 +24,16 @@ public class SearchPresenterImpl implements SearchContract.SearchPresenter {
 
         if(searchView !=null){
 
+            searchView.hideSearchMsg();
+            searchView.showProgressbar();
+
             ArrayList<Club> list = new ArrayList();
             for(int i=0;i<searchQuery.length();i++){
                 list.add(getClub(i));
             }
 
-            searchView.displaySearchResults(list);
             searchView.hideProgressbar();
+            searchView.displaySearchResults(list);
         }
     }
 
@@ -38,6 +41,7 @@ public class SearchPresenterImpl implements SearchContract.SearchPresenter {
         Club club  = new Club();
         club.setClubTitle("Club Title Result : "+i);
 //        club.setClubDetails("CLub details value :"+i);
+
 
         return club;
     }
