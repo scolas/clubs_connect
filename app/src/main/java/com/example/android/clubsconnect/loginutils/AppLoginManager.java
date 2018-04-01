@@ -1,6 +1,7 @@
 package com.example.android.clubsconnect.loginutils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,6 +24,12 @@ public class AppLoginManager {
     private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public static void userLogin(final ILoginStatus context, User user){
+
+        if(user.getEmail().isEmpty() || user.getPassword().isEmpty()){
+            Toast.makeText((Context) context, "You have to enter a value", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -38,6 +45,12 @@ public class AppLoginManager {
     }
 
     public static void userRegister(final ILoginStatus context, User user){
+
+        if(user.getEmail().isEmpty() || user.getPassword().isEmpty()){
+            Toast.makeText((Context) context, "You have to enter a value", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
