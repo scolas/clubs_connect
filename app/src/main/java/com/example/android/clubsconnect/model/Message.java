@@ -26,7 +26,7 @@ public class Message implements Serializable {
     private static final String KEY_TIME = "message_time_sent";
     private Timestamp mTimeSent;
     private String mText;
-    private Author mAuthor;
+    private User mAuthor;
     private Club mClub;
     private String mId;
     private MessageType mType;

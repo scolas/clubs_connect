@@ -8,6 +8,7 @@ public class User {
     private String mUsername;
     private String mPassword;
     private String mEmail;
+    private String mId;
 
     public User(String email, String password) {
         this.mPassword = password;
@@ -24,5 +25,9 @@ public class User {
 
     public String getEmail() {
         return mEmail;
+    }
+
+    public String getId() {
+        return mId;
     }
 }

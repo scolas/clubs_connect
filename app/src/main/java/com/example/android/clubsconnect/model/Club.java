@@ -59,8 +59,6 @@ public class Club {
 
     public String getCollege() { return this.mCollege; }
 
-    public int getID() { return this.mId; }
-
     //public Author getAdmin() {return this.mAdmin; }
     public void setmClubDetails(String mClubDetails) {
         this.mClubDetails = mClubDetails;
@@ -111,5 +109,9 @@ public class Club {
                 "\nCollege: "   + mCollege    +
                 //"\nAdmin: "     + mAdmin      +
                 "\nID: "        + mId;
+    }
+
+    public String getId() {
+        return mId;
     }
 }
