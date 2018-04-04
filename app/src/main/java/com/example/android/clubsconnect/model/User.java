@@ -55,7 +55,7 @@ public class User {
         return mId;
     }
     public void setId(String id){
-        mId = id; 
+        mId = id;
     }
 
     public static User fromMap(@NonNull Object oMap) {
