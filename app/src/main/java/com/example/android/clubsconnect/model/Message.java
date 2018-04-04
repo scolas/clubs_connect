@@ -63,7 +63,7 @@ public class Message implements Serializable {
                     message.setText((String) oValue);
                     break;
                 case KEY_AUTHOR_ID:
-                    message.setAuthor(Author.findById((String) oValue));
+                    message.setAuthor(User.findById((String) oValue));
                     break;
                 case KEY_CLUB_ID:
                     message.setClub(Club.findById((String) oValue));
@@ -112,11 +112,11 @@ public class Message implements Serializable {
         mText = text;
     }
 
-    public Author getAuthor() {
+    public User getAuthor() {
         return mAuthor;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(User author) {
         mAuthor = author;
     }
 
