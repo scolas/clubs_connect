@@ -2,6 +2,14 @@ package com.example.android.clubsconnect.model;
 
 import android.support.annotation.NonNull;
 
+import com.example.android.clubsconnect.interfaces.Consumer;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +29,8 @@ public class User {
     private static final String  KEY_ADMIN_CLUB_IDS = "admin_club_ids";
     private static final String  KEY_ROLE = "role";
 
+    private static final String ROLE_CLUB_MEMBER = "club_member";
+
     private String mUsername;
     private String mPassword;
     private String mEmail;
@@ -33,7 +43,14 @@ public class User {
     private LinkedList<String> mAdminClubIds;
     private String mRole;
 
-    private User(){}
+    public User(){}
+    public User(FirebaseUser user){
+        setId(user.getUid());
+        setFriendlyName(user.getDisplayName());
+        if(user.getPhotoUrl() != null)
+            setImageUrl(user.getPhotoUrl().toString());
+        setRole(ROLE_CLUB_MEMBER);
+    }
     public User(String email, String password) {
         this.mPassword = password;
         this.mEmail = email;
@@ -161,5 +178,22 @@ public class User {
 
     public String getRole() {
         return mRole;
+    }
+
+    public static void findById(String uId, final Consumer<User> userConsumer) {
+        DatabaseReference fuser = FirebaseDatabase.getInstance().getReference("users")
+                .child(uId);
+        fuser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user =  fromMap(dataSnapshot.getValue());
+                userConsumer.accept(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

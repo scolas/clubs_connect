@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.android.clubsconnect.model.Message;
+import com.example.android.clubsconnect.model.User;
 import com.example.android.clubsconnect.view.MessageViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -144,8 +145,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String messageText = mMessageEditText.getText().toString(); //TODO: internationlization.
+
         mMessageEditText.setText("");
         Message message = new Message(messageText);
+        message.setAuthor(new User(mFirebaseUser));
         message.setType(MessageType.FROM_ME);
         DatabaseReference messageReference = mFirebaseDatabaseReference.child(MESSAGES_CHILD).push();
         messageReference.setValue(message.toMap());

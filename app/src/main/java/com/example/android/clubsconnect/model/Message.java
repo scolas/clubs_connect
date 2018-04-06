@@ -30,6 +30,7 @@ public class Message implements Serializable {
     private Club mClub;
     private String mId;
     private MessageType mType;
+    private String mClubId;
 
     /**
      * <b>Default Constructor</b>
@@ -63,10 +64,10 @@ public class Message implements Serializable {
                     message.setText((String) oValue);
                     break;
                 case KEY_AUTHOR_ID:
-                    message.setAuthor(User.findById((String) oValue));
+                    User.findById((String) oValue, message::setAuthor);
                     break;
                 case KEY_CLUB_ID:
-                    message.setClub(Club.findById((String) oValue));
+                    message.setClubId((String) oValue);
                     break;
                 case KEY_TIME:
                     message.setTimeSent((Timestamp.valueOf((String) oValue)));
@@ -120,12 +121,12 @@ public class Message implements Serializable {
         mAuthor = author;
     }
 
-    public Club getClub() {
-        return mClub;
+    public String getClubId() {
+        return mClubId;
     }
 
-    public void setClub(Club club) {
-        mClub = club;
+    public void setClubId(String clubId) {
+        mClubId = clubId;
     }
 
     public String getId() {
@@ -169,7 +170,7 @@ public class Message implements Serializable {
         return other.getTimeSent().equals(this.mTimeSent) &&
                 other.getText().equals(this.mText) &&
                 other.getAuthor().equals(this.mAuthor) &&
-                other.getClub().equals(this.mClub) &&
+                other.getClubId().equals(this.mClubId) &&
                 other.getId() == this.mId &&
                 other.getType().equals(this.mType);
     }
