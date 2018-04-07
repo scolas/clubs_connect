@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">clubsconnect</string>
     <string name="send">Send</string>
+    <string name="search_hint">Search</string>
+    <string name="search_for_a_club">Search for a club</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="title">Club Connect</string>
 </resources>
