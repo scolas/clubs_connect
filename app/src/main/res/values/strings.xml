@@ -6,4 +6,5 @@
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="title">Club Connect</string>
+    <string name="enter_a_club_name">Enter a Club Name</string>
 </resources>

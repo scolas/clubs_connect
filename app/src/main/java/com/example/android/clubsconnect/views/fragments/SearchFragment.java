@@ -8,11 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.android.clubsconnect.R;
 import com.example.android.clubsconnect.adapters.SearchAdapter;
@@ -23,7 +22,7 @@ import com.example.android.clubsconnect.presenters.SearchPresenterImpl;
 
 import java.util.List;
 
-public class SearchFragment extends Fragment implements SearchContract.SearchView{
+public class SearchFragment extends Fragment implements SearchContract.SearchView, View.OnClickListener{
 
     FragmentSearchBinding binding;
 
@@ -44,32 +43,11 @@ public class SearchFragment extends Fragment implements SearchContract.SearchVie
         super.onViewCreated(view, savedInstanceState);
 
         presenter = new SearchPresenterImpl(this);
-        searchETListener();
+        initializeListeners();
     }
 
-    private void searchETListener(){
-
-        binding.searchET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-                // TODO: 3/17/18 check in future with team
-                if(!editable.toString().isEmpty() && editable.toString().length() >3){
-                    presenter.search(editable.toString());
-                }
-
-            }
-        });
+    private void initializeListeners(){
+        binding.clubSearchBtn.setOnClickListener(this);
     }
 
     public static SearchFragment newInstance() {
@@ -116,5 +94,22 @@ public class SearchFragment extends Fragment implements SearchContract.SearchVie
 
         binding.searchRV.setAdapter(searchAdapter);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+            case R.id.clubSearchBtn:
+                String searchValue = binding.searchET.getText().toString();
+
+                if(!searchValue.isEmpty()) {
+                    // If search value is not empty.
+                    presenter.search(searchValue);
+                }else{
+                    Toast.makeText(getContext(),getString(R.string.enter_a_club_name),Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 }

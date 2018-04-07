@@ -8,12 +8,22 @@
 
         <EditText
             android:id="@+id/searchET"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clubSearchBtn"
             app:layout_constraintTop_toTopOf="parent"
             android:hint="@string/search_hint"/>
+
+        <ImageView
+            android:id="@+id/clubSearchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/searchET"
+            android:padding="10dp"
+            android:src="@drawable/vector_search"/>
 
         <ProgressBar
             android:id="@+id/searchProgressBar"
