@@ -49,33 +49,8 @@ public class ClubController {
     private void makeClubProfileQuery(String clubId){
         String clubQuery = clubId.toString();
         URL clubSearchUrl = NetworkUtils.buildUrl(clubQuery);
-        new ClubQueryTask().execute(clubSearchUrl);
 
     }
 
-    public class ClubQueryTask extends AsyncTask<URL, Void, String>{
 
-
-        @Override
-        protected String doInBackground(URL... params) {
-            URL searchUrl = params[0];
-            String clubSearchResults = null;
-
-            try{
-                clubSearchResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-            return clubSearchResults;
-        }
-
-        @Override
-        protected void onPostExecute(String clubSearchResults) {
-            if(clubSearchResults != null && !clubSearchResults.equals("")){
-                setDetails(clubSearchResults);
-            }else{
-                setDetails("not working");
-            }
-        }
-    }
 }
