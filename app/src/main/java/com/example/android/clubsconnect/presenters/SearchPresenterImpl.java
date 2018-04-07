@@ -40,7 +40,8 @@ public class SearchPresenterImpl implements SearchContract.SearchPresenter {
     private Club getClub(int i){
         Club club  = new Club();
         club.setClubTitle("Club Title Result : "+i);
-        club.setmClubDetails("Club details value :"+i);
+//        club.setClubDetails("CLub details value :"+i);
+
 
         return club;
     }

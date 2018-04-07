@@ -1,7 +1,12 @@
 package com.example.android.clubsconnect.model;
 
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * <i><b>Message</b></i>
@@ -15,12 +20,82 @@ import java.sql.Timestamp;
 public class Message implements Serializable {
     //MEMBER VARIABLES
 
+    private static final String KEY_TEXT = "message_text";
+    private static final String KEY_AUTHOR_ID = "author_id";
+    private static final String KEY_CLUB_ID = "club_id";
+    private static final String KEY_TIME = "message_time_sent";
     private Timestamp mTimeSent;
     private String mText;
-    private Author mAuthor;
+    private User mAuthor;
     private Club mClub;
-    private int mId;
+    private String mId;
     private MessageType mType;
+    private String mClubId;
+
+    /**
+     * <b>Default Constructor</b>
+     * <p>
+     * This constructor should be used for debugging and testing purposes.
+     * <p>
+     * The text is set to a default message, and the id is set to -1.
+     * </p>
+     * </p>
+     */
+    public Message() {
+        this.mText = "This is a default message created by the default constructor";
+        this.mId = null; //-1 signals was not created in the DB, and is invalid
+    }
+
+    /**
+     * Generate a Message from a Map object returned from firebase's DataSnapshot.getValue();
+     */
+    public static Message fromMap(@NonNull Object oMap) {
+        Objects.requireNonNull(oMap);
+        if (!(oMap instanceof Map)) {
+            throw new IllegalArgumentException("Message.fromMap requires a map object");
+        }
+        final Message message = new Message();
+        Map<String, Object> map = (Map<String, Object>) oMap;
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Object oValue = entry.getValue();
+            switch (key) {
+                case KEY_TEXT:
+                    message.setText((String) oValue);
+                    break;
+                case KEY_AUTHOR_ID:
+                    User.findById((String) oValue, message::setAuthor);
+                    break;
+                case KEY_CLUB_ID:
+                    message.setClubId((String) oValue);
+                    break;
+                case KEY_TIME:
+                    message.setTimeSent((Timestamp.valueOf((String) oValue)));
+                    break;
+            }
+        }
+        return message;
+    }
+
+    public Map<String, Object> toMap() {
+        final Map<String, Object> map = new ArrayMap<>(4);
+        if (mAuthor != null) {
+            map.put(KEY_AUTHOR_ID, mAuthor.getId());
+        }
+        if (mClub != null) {
+            map.put(KEY_CLUB_ID, mClub.getId());
+        }
+        if (mText != null) {
+            map.put(KEY_TEXT, mText);
+        }
+        if (mTimeSent != null) {
+            map.put(KEY_TIME, mTimeSent.toString());
+        }
+        return map;
+    }
+    public Message(String message) {
+        mText = message;
+    }
 
     public Timestamp getTimeSent() {
         return mTimeSent;
@@ -38,29 +113,31 @@ public class Message implements Serializable {
         mText = text;
     }
 
-    public Author getAuthor() {
+    public User getAuthor() {
         return mAuthor;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(User author) {
         mAuthor = author;
     }
 
-    public Club getClub() {
-        return mClub;
+    public String getClubId() {
+        return mClubId;
     }
 
-    public void setClub(Club club) {
-        mClub = club;
+    public void setClubId(String clubId) {
+        mClubId = clubId;
     }
 
-    public int getId() {
+    public String getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         mId = id;
     }
+
+    // CONSTRUCTORS
 
     public MessageType getType() {
         return mType;
@@ -68,28 +145,6 @@ public class Message implements Serializable {
 
     public void setType(MessageType type) {
         mType = type;
-    }
-
-    // CONSTRUCTORS
-
-    /**
-     * <b>Default Constructor</b>
-     * <p>
-     *     This constructor should be used for debugging and testing purposes.
-     * <p>
-     *     The text is set to a default message, and the id is set to -1.
-     * </p>
-     * </p>
-     *
-     */
-    public Message() {
-        this.mText = "This is a default message created by the default constructor";
-        this.mId = -1; //-1 signals was not created in the DB, and is invalid
-
-    }
-
-    public static enum MessageType {
-        FROM_ME, FROM_GROUP;
     }
 
     /**
@@ -115,7 +170,7 @@ public class Message implements Serializable {
         return other.getTimeSent().equals(this.mTimeSent) &&
                 other.getText().equals(this.mText) &&
                 other.getAuthor().equals(this.mAuthor) &&
-                other.getClub().equals(this.mClub) &&
+                other.getClubId().equals(this.mClubId) &&
                 other.getId() == this.mId &&
                 other.getType().equals(this.mType);
     }
@@ -137,5 +192,9 @@ public class Message implements Serializable {
                 "\nMsg Type: "  + mType     +
                 "\nAuthor: "    + mAuthor   +
                 "\nTimestamp"   + mTimeSent;
+    }
+
+    public static enum MessageType {
+        FROM_ME, FROM_GROUP;
     }
 }

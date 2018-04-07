@@ -14,6 +14,8 @@ import com.example.android.clubsconnect.databinding.ActivityLoginBinding;
 import com.example.android.clubsconnect.loginutils.AppLoginManager;
 import com.example.android.clubsconnect.model.User;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity implements AppLoginManager.ILoginStatus {
 
@@ -66,8 +68,13 @@ public class LoginActivity extends AppCompatActivity implements AppLoginManager.
     }
 
     @Override
-    public void onRegisterSuccess(FirebaseUser user) {
+    public void onRegisterSuccess(FirebaseUser fire_user) {
         Toast.makeText(LoginActivity.this, "Registration success ", Toast.LENGTH_SHORT).show();
+        //we need to save the user to our users table now.
+        String uid = fire_user.getUid();
+        User user = new User(fire_user);
+        DatabaseReference usersDb = FirebaseDatabase.getInstance().getReference("users");
+        usersDb.child(uid).setValue(user.toMap());
         startActivity(new Intent(LoginActivity.this, ChatActivity.class));
     }
 

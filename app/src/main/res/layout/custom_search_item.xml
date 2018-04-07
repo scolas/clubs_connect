@@ -11,34 +11,34 @@
             android:id="@+id/clubIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/cc_dimen_10dp"
             android:src="@drawable/club_connect_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="@dimen/cc_dimen_10dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/clubName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Club Name"
-            app:layout_constraintTop_toTopOf="@+id/clubIcon"
-            app:layout_constraintStart_toEndOf="@+id/clubIcon"
-            app:layout_constraintEnd_toStartOf="@+id/searchAddIcon"
             android:layout_marginLeft="@dimen/cc_dimen_20dp"
-            android:layout_marginRight="@dimen/cc_dimen_20dp"/>
+            android:layout_marginRight="@dimen/cc_dimen_20dp"
+            app:layout_constraintEnd_toStartOf="@+id/searchAddIcon"
+            app:layout_constraintStart_toEndOf="@+id/clubIcon"
+            app:layout_constraintTop_toTopOf="@+id/clubIcon"
+            tools:text="Club Name" />
 
         <TextView
             android:id="@+id/clubDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Club Description"
-            app:layout_constraintStart_toEndOf="@+id/clubIcon"
+            android:layout_marginLeft="@dimen/cc_dimen_20dp"
+            android:layout_marginRight="@dimen/cc_dimen_20dp"
             app:layout_constraintTop_toBottomOf="@+id/clubName"
             app:layout_constraintBottom_toBottomOf="@+id/clubIcon"
             app:layout_constraintEnd_toStartOf="@+id/searchAddIcon"
-            android:layout_marginLeft="@dimen/cc_dimen_20dp"
-            android:layout_marginRight="@dimen/cc_dimen_20dp"/>
+            app:layout_constraintStart_toEndOf="@+id/clubIcon"
+            tools:text="Club Description" />
 
         <View
             android:layout_width="match_parent"
@@ -46,18 +46,18 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clubIcon"
-            android:layout_marginTop="@dimen/cc_dimen_10dp"/>
+            android:layout_marginTop="@dimen/cc_dimen_10dp"
+            app:layout_constraintTop_toBottomOf="@+id/clubIcon" />
 
         <ImageView
             android:id="@+id/searchAddIcon"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="@dimen/cc_dimen_10dp"
+            android:src="@drawable/vector_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/vector_add"
-            android:layout_marginRight="@dimen/cc_dimen_10dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

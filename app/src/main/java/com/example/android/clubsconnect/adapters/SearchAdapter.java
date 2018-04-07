@@ -59,7 +59,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         public void bind(int position){
 
             binding.clubName.setText(mClubList.get(position).getClubTitle());
-            binding.clubDescription.setText(mClubList.get(position).getmClubDetails());
+            binding.clubDescription.setText(mClubList.get(position).getClubDetails());
 
         }
     }
