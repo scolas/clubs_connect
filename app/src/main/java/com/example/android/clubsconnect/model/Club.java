@@ -1,5 +1,10 @@
 package com.example.android.clubsconnect.model;
 
+import android.location.Location;
+import android.media.Image;
+
+import java.util.ArrayList;
+
 /**
  * <i><b>Club</b></i>
  * <p>
@@ -8,13 +13,22 @@ package com.example.android.clubsconnect.model;
  *
  */
 
-class Club {
+public class Club {
     // MEMBER VARIABLES
 
     private String mClubTitle;
     private String mCollege;
     private int mId;
-    private Author mAdmin;
+    //private ArrayList<Admin> mAdmin;
+    //private ArrayList<Users> mUsers;
+    private Author mAuthor;
+    private String mCity;
+    private String mState;
+    private Location mClubLocation;
+    private Image mClubImage;
+    private String mClubDetails;
+    private Event mNextEvent;
+    private String mMembersCount;
 
     // GETTERS
     //Test
@@ -28,7 +42,7 @@ class Club {
 
     public void setID(int id) { this.mId = id; }
 
-    public void setAdmin(Author admin) { this.mAdmin = admin; }
+    public void setAdmin(Author admin) { /*this.mAdmin = admin;*/ }
 
     // CONSTRUCTORS
 
@@ -52,7 +66,14 @@ class Club {
 
     public int getID() { return this.mId; }
 
-    public Author getAdmin() {return this.mAdmin; }
+    //public Author getAdmin() {return this.mAdmin; }
+    public void setmClubDetails(String mClubDetails) {
+        this.mClubDetails = mClubDetails;
+    }
+
+    public String getmClubDetails() {
+        return mClubDetails;
+    }
 
     /**
      * <b>equals()</b>
@@ -76,8 +97,8 @@ class Club {
 
         return other.getClubTitle().equals(this.mClubTitle) &&
                 other.getCollege().equals(this.mCollege)    &&
-                other.getID() == this.mId                   &&
-                other.getAdmin().equals(this.mAdmin);
+                other.getID() == this.mId ;                  /*&&
+                other.getAdmin().equals(this.mAdmin);*/
     }
 
     /**
@@ -93,7 +114,7 @@ class Club {
     public String toString() {
         return "Club Title: "   + mClubTitle  +
                 "\nCollege: "   + mCollege    +
-                "\nAdmin: "     + mAdmin      +
+                //"\nAdmin: "     + mAdmin      +
                 "\nID: "        + mId;
     }
 }

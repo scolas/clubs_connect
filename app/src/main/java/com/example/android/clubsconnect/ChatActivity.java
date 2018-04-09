@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.clubsconnect.controller.MessageAdapter;
+import com.example.android.clubsconnect.adapters.MessageAdapter;
 
 /**
  * Created by ProfessorTaha on 3/3/2018.
