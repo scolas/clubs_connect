@@ -9,7 +9,7 @@ information about their club, promote membership and communicate with members
 2. People will be able to find clubs they wish to join and follow them. This will allow them to communicate with other members via the
 chat and see any upcoming events on the schedule
 
-Contributers:
+Contributors:
 
 @Aaron AQ -  Aaron A Quaday
 @Anuja - Anuja Patki
