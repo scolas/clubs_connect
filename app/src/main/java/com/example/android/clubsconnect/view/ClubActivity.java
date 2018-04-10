@@ -1,5 +1,6 @@
 package com.example.android.clubsconnect.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,18 +14,34 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.android.clubsconnect.R;
 import com.example.android.clubsconnect.controller.ClubController;
+import com.example.android.clubsconnect.model.Club;
 import com.example.android.clubsconnect.utilities.NetworkUtils;
+import com.example.android.clubsconnect.views.activities.SearchActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 
-public class ClubActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
-    TextView mNameTextView;
-    TextView mDetailTextView;
-    TextView mAboutTextView;
-    ImageView mImage;
+public class ClubActivity extends AppCompatActivity {
+    private static final String EXTRA_CLUB_ID = "club_id";
+    private TextView mNameTextView;
+    private TextView mDetailTextView;
+    private TextView mAboutTextView;
+    private String mClubId;
+    private Club mClub;
+    private final FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
+    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private ImageView mImageView;
     private static final int GITHUB_SEARCH_LOADER = 22;
 
     private ProgressBar mLoadingIndicator;
@@ -35,80 +52,58 @@ public class ClubActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //initialize the view
         setContentView(R.layout.club_activity);
 
         mNameTextView = (TextView) findViewById(R.id.club_name_txt);
         mDetailTextView = (TextView) findViewById(R.id.club_detail_txt);
         mAboutTextView = (TextView) findViewById(R.id.club_about_txt);
+        mImageView = findViewById(R.id.club_img);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        String about = clubController.getAbout();
-        mAboutTextView.setText(about);
 
-        Bundle queryBundle = new Bundle();
-        queryBundle.putString(SEARCH_QUERY_URL_EXTRA, " ");
+        //get club id from
+        //TODO: replace line below
+        mClubId = "1" ;
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        if(extras == null || !extras.containsKey(EXTRA_CLUB_ID)){
+//            intent = new Intent(this, SearchActivity.class);
+//            startActivity(intent);
+//            finish();
+//        } else {
+//            mClubId = extras.getString(EXTRA_CLUB_ID);
+//        }
 
-        LoaderManager loaderManager = getSupportLoaderManager();
-        Loader<String> githubSearchLoader = loaderManager.getLoader(GITHUB_SEARCH_LOADER);
-        if (githubSearchLoader == null) {
-            loaderManager.initLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
-        } else {
-            loaderManager.restartLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
-        }
-
+        loadClub();
     }
 
-
-    @Override
-    public Loader<String> onCreateLoader(int id, final Bundle args) {
-        return new AsyncTaskLoader<String>(this) {
+    private void loadClub() {
+        DatabaseReference clubReference = mFirebaseDatabase.getReference("clubs")
+                .child(mClubId);
+        clubReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            protected void onStartLoading() {
-                if(args == null){
-                    return;
-                }
-
-                mLoadingIndicator.setVisibility(View.VISIBLE);
-
-                forceLoad();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Object oMap = dataSnapshot.getValue();
+                mClub = Club.fromMap(oMap);
+                updateView();
             }
 
             @Override
-            public String loadInBackground() {
-                try {
-                    return "Next Meeting 05/01/2018";
-                }catch (Exception e){
-                    e.printStackTrace();
-                    return null;
-                }
+            public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
+        });
     }
 
-    @Override
-    public void onLoadFinished(Loader<String> loader, String data) {
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
-        if (null == data) {
-
-        } else {
-            mDetailTextView.setText(data);
-            mNameTextView.setText("Cooking Club");
-            mAboutTextView.setText("We invite you to join the (free!) ChopChop Cooking Club and pledge to cook dinner together once a month. Each month, you’ll get a delicious new recipe in your inbox. We’ll all be making the same recipe that month, learning different essential cooking skills along the way. " +
-                    "Each challenge will also come with how-tos, shopping and storage tips, fun activities, and conversation starters.");
-
-        }
-
+    private void updateView() {
+        mAboutTextView.setText(mClub.getDescription());
+        mNameTextView.setText(mClub.getClubTitle());
+        StorageReference imageReference = mFirebaseStorage.getReferenceFromUrl(mClub.getImageUrl());
+        Glide.with(this)
+                .load(imageReference)
+                .into(mImageView);
     }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-
-    }
-
-
-
-
 
 
 }

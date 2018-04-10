@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class Club {
     // MEMBER VARIABLES
-    private static final String KEY_NAME = "name";
+    private static final String KEY_NAME = "title";
     private static final String KEY_COLLEGE_ID = "college_id";
     private static final String KEY_CITY = "city";
     private static final String KEY_STATE = "state";
@@ -37,11 +37,9 @@ public class Club {
     //private ArrayList<Users> mUsers;
     private String mCity;
     private String mState;
-    private Location mClubLocation;
     private Image mClubImage;
     private String mClubDetails;
     private Event mNextEvent;
-    private String mMembersCount;
     private String mImageUrl;
     private LinkedList<String> mAdminIds;
     private LinkedList<String> mMemberIds;
@@ -77,7 +75,7 @@ public class Club {
                     club.setState((String) oValue);
                     break;
                 case KEY_MEMBER_IDS:
-                    club.setMemberIds(new LinkedList<String>((List<String>) oValue));
+                    club.setMemberIds(new LinkedList<>((List<String>) oValue));
                     break;
                 case KEY_DESCRIPTION:
                     club.setDescription((String) oValue);
