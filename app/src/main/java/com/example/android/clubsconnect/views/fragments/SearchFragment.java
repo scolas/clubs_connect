@@ -1,6 +1,7 @@
 package com.example.android.clubsconnect.views.fragments;
 
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,10 +20,11 @@ import com.example.android.clubsconnect.databinding.FragmentSearchBinding;
 import com.example.android.clubsconnect.interfaces.SearchContract;
 import com.example.android.clubsconnect.model.Club;
 import com.example.android.clubsconnect.presenters.SearchPresenterImpl;
+import com.example.android.clubsconnect.view.ClubActivity;
 
 import java.util.List;
 
-public class SearchFragment extends Fragment implements SearchContract.SearchView, View.OnClickListener{
+public class SearchFragment extends Fragment implements SearchContract.SearchView, View.OnClickListener, SearchAdapter.onSearchItemClickListener{
 
     FragmentSearchBinding binding;
 
@@ -88,7 +90,7 @@ public class SearchFragment extends Fragment implements SearchContract.SearchVie
         binding.searchRV.setHasFixedSize(true);
 
         if(searchAdapter == null) {
-            searchAdapter = new SearchAdapter();
+            searchAdapter = new SearchAdapter(this);
         }
         searchAdapter.setClubData(clubList);
 
@@ -111,5 +113,10 @@ public class SearchFragment extends Fragment implements SearchContract.SearchVie
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onSearchItemClicked() {
+        startActivity(new Intent(getContext(), ClubActivity.class));
     }
 }
