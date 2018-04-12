@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/clubIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/club_connect_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/cc_dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/clubName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Club Name"
+            app:layout_constraintTop_toTopOf="@+id/clubIcon"
+            app:layout_constraintStart_toEndOf="@+id/clubIcon"
+            app:layout_constraintEnd_toStartOf="@+id/searchAddIcon"
+            android:layout_marginLeft="@dimen/cc_dimen_20dp"
+            android:layout_marginRight="@dimen/cc_dimen_20dp"/>
+
+        <TextView
+            android:id="@+id/clubDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Club Description"
+            app:layout_constraintStart_toEndOf="@+id/clubIcon"
+            app:layout_constraintTop_toBottomOf="@+id/clubName"
+            app:layout_constraintBottom_toBottomOf="@+id/clubIcon"
+            app:layout_constraintEnd_toStartOf="@+id/searchAddIcon"
+            android:layout_marginLeft="@dimen/cc_dimen_20dp"
+            android:layout_marginRight="@dimen/cc_dimen_20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cc_dimen_1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clubIcon"
+            android:layout_marginTop="@dimen/cc_dimen_10dp"/>
+
+        <ImageView
+            android:id="@+id/searchAddIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/vector_add"
+            android:layout_marginRight="@dimen/cc_dimen_10dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
