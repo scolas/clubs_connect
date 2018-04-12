@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ClubConnect.iml" filepath="$PROJECT_DIR$/ClubConnect.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/clubs_connect.iml" filepath="$PROJECT_DIR$/clubs_connect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clubsconnect.iml" filepath="$PROJECT_DIR$/clubsconnect.iml" />
     </modules>
   </component>
 </project>
