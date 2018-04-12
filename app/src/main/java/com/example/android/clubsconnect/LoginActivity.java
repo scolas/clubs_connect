@@ -3,16 +3,14 @@ package com.example.android.clubsconnect;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.clubsconnect.databinding.ActivityLoginBinding;
 import com.example.android.clubsconnect.loginutils.AppLoginManager;
 import com.example.android.clubsconnect.model.User;
+import com.example.android.clubsconnect.views.activities.DashboardActivity;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -58,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements AppLoginManager.
     @Override
     public void onLoginSuccess(FirebaseUser user) {
         Toast.makeText(LoginActivity.this, "Authentication success ", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(LoginActivity.this, ChatActivity.class));
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
     }
 
     @Override
@@ -75,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements AppLoginManager.
         User user = new User(fire_user);
         DatabaseReference usersDb = FirebaseDatabase.getInstance().getReference("users");
         usersDb.child(uid).setValue(user.toMap());
-        startActivity(new Intent(LoginActivity.this, ChatActivity.class));
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
     }
 
     @Override

@@ -19,9 +19,10 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder>{
 
     private List<Club> mClubList;
+    private onSearchItemClickListener listener;
     
-    public SearchAdapter(){
-
+    public SearchAdapter(onSearchItemClickListener listener){
+        this.listener = listener;
     }
 
     @NonNull
@@ -61,6 +62,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             binding.clubName.setText(mClubList.get(position).getClubTitle());
             binding.clubDescription.setText(mClubList.get(position).getClubDetails());
 
+            itemView.setOnClickListener(view -> listener.onSearchItemClicked());
+
         }
+    }
+
+    public interface onSearchItemClickListener{
+        void onSearchItemClicked();
     }
 }

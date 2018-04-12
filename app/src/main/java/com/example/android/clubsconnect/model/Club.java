@@ -1,6 +1,5 @@
 package com.example.android.clubsconnect.model;
 
-import android.location.Location;
 import android.media.Image;
 import android.support.v4.util.ArrayMap;
 
@@ -30,7 +29,7 @@ public class Club {
     //TODO: do we need more?
 
 
-    private String mClubTitle;
+    private String clubTitle;
     private String mCollegeId;
     private String mId;
     //private ArrayList<Admin> mAdmin;
@@ -38,7 +37,7 @@ public class Club {
     private String mCity;
     private String mState;
     private Image mClubImage;
-    private String mClubDetails;
+    private String clubDetails;
     private Event mNextEvent;
     private String mImageUrl;
     private LinkedList<String> mAdminIds;
@@ -101,7 +100,7 @@ public class Club {
         map.put(KEY_DESCRIPTION, getDescription());
         return map;
     }
-    public void setClubTitle(String clubTitle) { this.mClubTitle = clubTitle; }
+    public void setClubTitle(String clubTitle) { this.clubTitle = clubTitle; }
 
 
     // CONSTRUCTORS
@@ -113,22 +112,27 @@ public class Club {
      * </p>
      */
     public Club() {
-        this.mClubTitle = "This is not a real club";
+        this.clubTitle = "This is not a real club";
         this.mId = null;
+    }
+
+    public Club(String clubTitle, String clubDetails){
+        this.clubTitle = clubTitle;
+        this.clubDetails = clubDetails;
     }
 
     // SETTERS
 
-    public String getClubTitle() { return this.mClubTitle; }
+    public String getClubTitle() { return this.clubTitle; }
 
 
     //public Author getAdmin() {return this.mAdmin; }
-    public void setmClubDetails(String mClubDetails) {
-        this.mClubDetails = mClubDetails;
+    public void setmClubDetails(String clubDetails) {
+        this.clubDetails = clubDetails;
     }
 
     public String getClubDetails() {
-        return mClubDetails;
+        return clubDetails;
     }
 
     /**
@@ -142,7 +146,7 @@ public class Club {
      */
     @Override
     public String toString() {
-        return "Club Title: "   + mClubTitle  +
+        return "Club Title: "   + clubTitle  +
                 "\nCollege: "       +
                 //"\nAdmin: "     + mAdmin      +
                 "\nID: "        + mId;
